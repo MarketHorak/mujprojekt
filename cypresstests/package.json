@@ -1,0 +1,22 @@
+{
+  "name": "cypresstests",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite --port 3000",
+    "build": "vite build",
+    "preview": "vite preview --port 3000",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@types/node": "^24.3.0",
+    "cypress": "^15.0.0",
+    "typescript": "^5.9.2",
+    "vite": "^7.1.3"
+  }
+}
