@@ -5,19 +5,21 @@
 // })
 import * as base from '../fixtures/user.json';
 
-describe('Demoblaze – stejné (unikátní) jméno pro sign up i login', () => {
+describe('Demoblaze ', () => {
   let username: string; // jedna proměnná pro oba kroky
 
   beforeEach(() => {
     cy.visit('/');
     cy.window().then(win => cy.stub(win, 'alert').as('alert'));
-    username = `${base.username}_${Date.now()}`;   // vygeneruj 1×
+    username = `${base.username}`;   // vygeneruj 1×  } _${Date.now()
   });
 
   it('signup → login', () => {
     // --- Sign up ---
     cy.wait(1000);
     cy.get('#signin2').click();
+    cy.wait(2000); // prepsat na button bude viditelny
+
     cy.get('#sign-username').should('be.visible').type(username);
     cy.get('#sign-password').type(base.password);
     cy.contains('#signInModal .btn-primary', 'Sign up').click();
@@ -28,28 +30,44 @@ describe('Demoblaze – stejné (unikátní) jméno pro sign up i login', () => 
 
     // --- Login (STEJNÉ username) ---
     cy.get('#login2').click();
-    cy.get('#loginusername').should('be.visible').type(username);
+    cy.wait(1000); // prepsat na button bude viditelny
+    cy.get('#loginusername').should('be.visible').type(username);;
     cy.get('#loginpassword').type(base.password);
+    cy.wait(1000); // prepsat na button bude viditelny
     cy.get('#logInModal').contains('button', /^Log in$/).click();
 
+
+   // 2) Ověřit že je uživatel přihlášen (vidí se jeho jméno apod.)
     cy.get('#nameofuser').should('contain', username);
-  });
-});
+ 
 
 
-    // cy.get('#nameofuser').should('contain', signupUser.username);
 
-
-    // 2) Ověř, že je uživatel přihlášen (vidí se jeho jméno apod.)
-
-
-// cy.get('#nameofuser').should('contain', signupUser.username);
 
    // --- Produkt → Add to cart ---
-    // cy.contains('#itemc', 'Laptops').click();
-    // cy.contains('.hrefch', 'Sony vaio i5').click();
-    // cy.contains('a', 'Add to cart').click();
 
+   // list group menu 
+  //  <div class="list-group">
+  //         <a href="" class="list-group-item" id="cat">CATEGORIES</a>
+  //         <a href="#" id="itemc" onclick="byCat('phone')" class="list-group-item">Phones</a>
+  //         <a href="#" id="itemc" onclick="byCat('notebook')" class="list-group-item">Laptops</a>
+  //         <a href="#" id="itemc" onclick="byCat('monitor')" class="list-group-item">Monitors</a>
+  //       </div>
+
+
+ cy.contains('#itemc', 'Laptops').click();
+
+   // prepsat podle celeho kontejneru aby slo jen vybrat produkt
+   // celej kontejner ma id="tbodyid"
+   // prvek class="card h-100"
+   // napr <h4 class="card-title"><a href="prod.html?idp_=2" class="hrefch">Nokia lumia 1520</a></h4>
+
+
+   
+    cy.contains('.hrefch', 'Sony vaio i5').click();
+    cy.contains('a', 'Add to cart').click();
+});
+ });
     // // alert z "Add to cart"
     // cy.get('@alert')
     //   .should('have.been.called')
