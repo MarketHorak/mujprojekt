@@ -67,7 +67,7 @@ describe('Demoblaze ', () => {
     cy.get('@alert')
       .should('have.been.called')
       .its('lastCall.args.0')
-    // .should('match', /Product added/i);
+    //  nefunguje  .should('match', /Product added/i);
 
 
   });
