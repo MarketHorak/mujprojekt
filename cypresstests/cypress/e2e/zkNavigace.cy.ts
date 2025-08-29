@@ -3,31 +3,33 @@ import Menu from '../pages/components/menuComponent';
 it('navigace funguje', () => {
   cy.visit('/');
 
-  // Menu.click('login');
-  // cy.get('#logInModal').should('be.visible');
 
-  // // zavřít modal, kdybys potřebovala:
-  // cy.contains('#logInModal .modal-footer button', 'Close').click({ force: true });
 
+    // // zavřít modal-nefunguje
+    // cy.contains('#logInModal .modal-footer button', 'Close').click({ force: true });
+
+// ========== HOME
+  Menu.click('home');
+    cy.url().should('contain', 'index.html');
+
+  cy.url().should('eq', 'https://www.demoblaze.com/index.html');
+
+// ========== CONTACT
+ // todle dat do funkce v menu component
   Menu.click('contact');
   cy.get('#exampleModal').should('be.visible');
   cy.wait(1000);
 // modal debilni
-cy.get('#exampleModal').should('be.visible');
-
 // klik na close
 cy.get('#exampleModal').within(() => {
   cy.contains('button', /^Close$/).click({ force: true });
 });
 
-// overeni 6e je v hajzlu
+// overeni ze je debilni modal v hajzlu
 cy.get('#exampleModal').should('not.be.visible');
 cy.get('.modal-backdrop').should('not.exist');
-  // cy.get('.modal-footer').click({ force: true });
-  // cy.get('#logInModalLabel').click({ force: true });
-  // cy.get('button[data-dismiss="modal"]').click({ force: true });
 
-
+// ==========ABOUT
 // todle dat do funkce v menu component
 Menu.click('about');
 
@@ -44,11 +46,21 @@ cy.get('.modal-backdrop').should('not.exist');
   // cy.get('.modal-footer').contains('Close').click({force: true});
   // cy.get('.modal-backdrop').should('not.exist');
 
+// ========== CART
+
   Menu.click('cart');
   cy.url().should('contain', 'cart.html');
 
-  Menu.click('home');
-  cy.url().should('eq', 'https://www.demoblaze.com/index.html');
+// ========== LOGIN
+
+  Menu.click('login');
+  cy.get('#logInModal').should('be.visible');
+  cy.wait(1000);
+  cy.get('#logInModal').within(() => {
+    cy.contains('button', /^Close$/).click();({ force: true });
+  });
+  cy.get('.modal-backdrop').should('not.exist');
+  // ========== SIGN UP
 
   Menu.click('signup');
   cy.get('#signInModal').should('be.visible');
@@ -58,7 +70,20 @@ cy.get('.modal-backdrop').should('not.exist');
   });
   cy.get('.modal-backdrop').should('not.exist');
 
+// finish back to page
+cy.visit('/');
+
 });
+
+
+// // obecně / jeste otestovat
+// cy.get('.modal.show').find('[data-dismiss="modal"]').click({ force: true });
+// cy.get('.modal-backdrop').should('not.exist');
+
+
+
+
+
 
 
 
@@ -70,6 +95,3 @@ cy.get('.modal-backdrop').should('not.exist');
 // // nebo první tlačítko ve footeru (0 = Close, 1 = Send)
 // cy.get('#exampleModal .modal-footer .btn').eq(0).click({ force: true });
 
-// // obecně zavři JAKÝKOLIV otevřený modal
-// cy.get('.modal.show').find('[data-dismiss="modal"]').click({ force: true });
-// cy.get('.modal-backdrop').should('not.exist');

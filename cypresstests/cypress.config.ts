@@ -8,9 +8,9 @@ import { defineConfig } from "cypress";
 //   },
 // });
 export default defineConfig({
-  //  projectId: "81dvh",
+  projectId: "81dvh",
   e2e: {
-  
+
     baseUrl: "https://www.demoblaze.com",
 
     // baseUrl: "http://localhost:3000",

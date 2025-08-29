@@ -1,5 +1,5 @@
 class MenuComponent {
-  // Jednotlivé odkazy v horní navigaci Demoblaze
+  //  odkazy vyber
   home   = () => cy.contains('a.nav-link', 'Home');
   contact= () => cy.contains('a.nav-link', 'Contact');
   about  = () => cy.contains('a.nav-link', 'About us');
@@ -7,7 +7,7 @@ class MenuComponent {
   login  = () => cy.get('#login2');
   signup = () => cy.get('#signin2');
 
-  // Jednoduché kliknutí podle názvu
+  //  odkazy
   click(link: 'home'|'contact'|'about'|'cart'|'login'|'signup') {
     switch (link) {
       case 'home':   return this.home().click();
