@@ -8,7 +8,7 @@ import { defineConfig } from "cypress";
 //   },
 // });
 export default defineConfig({
-  projectId: "81dvh",
+  projectId: "181dvh",
   e2e: {
 
     baseUrl: "https://www.demoblaze.com",
