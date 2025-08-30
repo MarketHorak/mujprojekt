@@ -1,4 +1,7 @@
 {
   "username": "cypress_user",
-  "password": "Passw0rd123!"
+  "password": "Passw0rd123!",
+
+  "wrongusername": "wrong_user",
+  "wrongpassword": ""
 }
