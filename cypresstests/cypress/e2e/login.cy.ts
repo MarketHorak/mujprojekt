@@ -2,10 +2,13 @@ import { signUp } from '../pages/signUpPage';
 import Menu from '../pages/components/menuComponent';
 import * as base from '../fixtures/user.json';
 import { logIn } from '../pages/loginPage';
+import smallNAV from '../pages/components/smallMenuComponent';
+
 
 describe("sign in log in", () => {
-
-
+    beforeEach(() => {
+        cy.window().then(win => cy.stub(win, 'alert').as('alert'));
+    });
     it('Sign up s JSON DATA ', () => {
         // ARRANGE 
         cy.visit('/');
@@ -31,6 +34,7 @@ describe("sign in log in", () => {
         Menu.click('login');
 
 
+
         // ACT
         logIn.insertLoginData(base.username, base.password);
         logIn.submit();
@@ -44,8 +48,60 @@ describe("sign in log in", () => {
                 const msg = t.replace(/\s+/g, ' ').trim();
                 cy.log(`Navbar hlásí: "${msg}"`);
                 expect(msg).to.equal(`Welcome ${base.username}`);
+
             });
 
 
+        // cy.visit('/index.html#');
+        smallNAV.pointTo('laptops');
+        cy.get('#itemc').should('exist')
+        //  cy.wait(2000);
+
+        cy.contains('.hrefch', 'Sony vaio i5').click();
+        cy.contains('a', 'Add to cart').click();
+        // emptyCart()
+
+        // alert z "Add to cart"
+        // cy.wait(1000);
+        // cy.get('@alert')
+        //     .should('have.been.called')
+        //     .its('lastCall.args.0')
+        //     .should('contain', 'Product added to cart');
+        // it('přepíná na Laptops ', () => {
+        //     cy.contains('#itemc', 'Laptops').click();
+
+        //     // cy.visit('/index.html#');
+        //     // smallNAV.pointTo('laptops');
+        //     // cy.get('#itemc').should('exist')
+        //     // cy.wait(2000);
+        // });
+        Menu.click('cart');
+        cy.url().should('contain', 'cart.html');
+        cy.get('#tbodyid tr').then(rows => {
+            if (rows.length > 0) {
+                cy.wrap(rows).each(() => {
+                    cy.contains('#tbodyid a', 'Delete').first().click();
+                });
+            }
+        });
+
+        cy.get('#tbodyid tr').should('have.length', 0);
     });
+    // function emptyCart() {
+    //     Menu.click('cart');
+    //     cy.url().should('contain', 'cart.html');
+
+    //     cy.get('#tbodyid tr').then(rows => {
+    //         if (rows.length > 0) {
+    //             cy.wrap(rows).each(() => {
+    //                 cy.contains('#tbodyid a', 'Delete').first().click();
+    //             });
+    //         }
+    //     });
+
+    //     cy.get('#tbodyid tr').should('have.length', 0);
+    //     Menu.click('home');
+    // }
+
 });
+
