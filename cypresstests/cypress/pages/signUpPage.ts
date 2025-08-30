@@ -3,7 +3,7 @@ import Menu from './components/menuComponent';
 
 class SignUp {
 
-    openLink = () => cy.get('#signin2');               // link v navbaru
+    openLink = () => cy.get('#signin2'); // uz nemusim// link v navbaru
     modal = () => cy.get('#signInModal');
 
     usernameInput = () => cy.get('#sign-username');
