@@ -1,4 +1,4 @@
-import Menu from '../pages/components/menuComponent';
+import Menu from './components/menuComponent';
 
 
 class SignUp {
