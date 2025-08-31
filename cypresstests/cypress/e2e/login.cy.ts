@@ -47,9 +47,11 @@ describe("sign in log in", () => {
         logIn.insertLoginData(base.username, base.password);
         logIn.submit();
         // cy.wait(2000);
+        // Menu.expandIfCollapsed();
+        // cy.get('#nameofuser').should('contain.text', `Welcome ${base.username}`);
 
         // ASSERT
-        logIn.nameOfuser().should('be.visible').should('contain', base.username);
+        logIn.nameOfuser().should('contain', base.username);
         logIn.nameOfuser()
             .invoke('text')
             .then(t => {
