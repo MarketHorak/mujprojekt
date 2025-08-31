@@ -32,11 +32,11 @@ class CheckInCartinCart {
     }
 
     openAndLoad() {
-        cy.intercept('POST', '**/viewcart').as('viewcart');   // 1) nejdřív intercept
-        Menu.click('cart');                                    // 2) klik na Cart PATŘÍ SEM
-        cy.wait('@viewcart');                                  // 3) počkej na data
-        this.totalPanel().should('exist');                     // ⬅️ bylo 'be.visible' → dej 'exist'
-        this.table().should('exist');                          // tbody může mít height 0, neřeš viditelnost
+        cy.intercept('POST', '**/viewcart').as('viewcart');   // 1 intercept
+        Menu.click('cart');                                    // klik na Cart PATŘÍ SEM
+        cy.wait('@viewcart');                                  //  cekam na data
+        this.totalPanel().should('exist');                     // 
+        this.table().should('exist');                          //
     }
 
 
