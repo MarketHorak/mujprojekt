@@ -52,6 +52,7 @@ describe("sign in log in", () => {
 
         // ASSERT
         logIn.nameOfuser().should('contain', base.username);
+        logIn.nameOfuser().should('contain.text', `Welcome ${base.username}`);
         logIn.nameOfuser()
             .invoke('text')
             .then(t => {
