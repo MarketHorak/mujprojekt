@@ -25,5 +25,9 @@ class LogIn {
     callBackdrop() {
         this.loginModalBackdrop().should('not.exist');
     }
+
+
+
+
 }
 export const logIn = new LogIn();
