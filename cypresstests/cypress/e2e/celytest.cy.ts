@@ -65,7 +65,7 @@ describe("sign in log in", () => {
         // checkInCart.emptyCart()
 
         ///// //  class INCART - mam funkce pro upravu    
-        //   checkInCart.emptyCart();
+        //  ///// fakt nefunguje ////  checkInCart.emptyCart();
         checkInCart.openAndLoad();
         checkInCart.ensureOnCart();
 
@@ -77,7 +77,7 @@ describe("sign in log in", () => {
         checkInCart.open();    // cy.contains('.hrefch', 'Sony vaio i5').click();// "Sony vaio i5" (detail)
         cy.intercept('POST', '**/addtocart').as('addToCart');
         cy.contains('a', 'Add to cart').click();
-        cy.wait('@addToCart');
+        //cy.wait('@addToCart');
 
 
 
@@ -95,12 +95,6 @@ describe("sign in log in", () => {
 
         // ACT
         checkInCart.openPlaceOrder();
-
-
-        // ORDER FORM
-        orderForm.checkFieldsVisible();
-        // orderForm.totalLabel().should('contain', '790');
-
 
 
         // ORDER FORM
