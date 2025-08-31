@@ -56,13 +56,12 @@ describe("sign in log in", () => {
                 expect(msg).to.equal(`Welcome ${base.username}`);
 
             });
-        checkInCart.emptyCartViaApi();
+        //     checkInCart.emptyCartViaApi(); ///////////// tak tohle me oblejvej
 
 
         ///// //  class INCART - mam funkce pro upravu    
-        // cy.visit('/index.html#');
-        checkInCart.openAndLoad();
-        //   checkInCart.emptyCart();
+
+        checkInCart.openAndLoad();  //   checkInCart.emptyCart();
         checkInCart.ensureOnCart();
 
         // Na menu a LAPTOPS
