@@ -57,7 +57,7 @@ describe("sign in log in", () => {
                 expect(msg).to.equal(`Welcome ${base.username}`);
 
             });
-        //     checkInCart.emptyCartViaApi(); ///////////// tak tohle me oblejvej
+        checkInCart.emptyCartViaApi(); ///////////// tak tohle me oblejvej
 
 
         ///// //  class INCART - mam funkce pro upravu    
@@ -70,7 +70,7 @@ describe("sign in log in", () => {
         smallNAV.pointTo('laptops');
         cy.get('#itemc').should('exist');
 
-        checkInCart.open();    // cy.contains('.hrefch', 'Sony vaio i5').click();                    // klik na "Sony vaio i5" (detail)
+        checkInCart.open();    // cy.contains('.hrefch', 'Sony vaio i5').click();// "Sony vaio i5" (detail)
         cy.intercept('POST', '**/addtocart').as('addToCart');
         cy.contains('a', 'Add to cart').click();
         cy.wait('@addToCart');
