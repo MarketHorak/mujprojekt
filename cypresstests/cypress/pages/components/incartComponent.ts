@@ -9,7 +9,10 @@ class inCart {
     productName = () => cy.contains('#tbodyid tr.success td', /^\s*Sony vaio i5\s*$/);
     placeOrderButton = () => cy.get('button.btn.btn-success[data-target="#orderModal"]');
     totalPrice = () => cy.get('#totalp');
-    // placeOrderButton = () => cy.contains('button', /^Place Order$/);
+    orderModal = () => cy.get('#orderModal');
+
+
+
 
     // FUNKCE 
 
@@ -21,7 +24,7 @@ class inCart {
         this.productName().should('exist');
         this.productPrice().should('exist');
     }
-
+    // nakonec nepouzivem ... prepsana empty fce
     trimCartToOne() {
         this.cartItems().then($rows => {
             const n = $rows.length;
@@ -49,7 +52,11 @@ class inCart {
 
         this.cartItems().should('have.length', 0);
     }
-
+    // pak se uz nasmeruju na order modal ... samostatna page udelam
+    openPlaceOrder() {
+        this.placeOrderButton().should('be.visible').and('not.be.disabled').click();
+        this.orderModal().should('be.visible');
+    }
 
 
 

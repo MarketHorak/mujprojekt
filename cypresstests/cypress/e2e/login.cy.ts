@@ -59,8 +59,10 @@ describe("sign in log in", () => {
         cy.contains('a', 'Add to cart').click();
 
         Menu.click('cart');
+        // ACT
         checkInCart.emptyCart();
 
+        // ASSERT kontrola tlacitek a cen v DOMU
         // checkInCart.trimCartToOne();
         checkInCart.productName().should('be.visible');
         checkInCart.productPrice().should('be.visible');
@@ -68,11 +70,12 @@ describe("sign in log in", () => {
         checkInCart.totalPrice().should('have.text', '790');
         checkInCart.placeOrderButton().should('be.visible');
 
+        // ACT
+        checkInCart.openPlaceOrder();
     });
 
     // afterEach(() => {
-    //     // Clear the cart after each test
-    //     checkInCart.emptyCart();
+
     // });
 
 });
