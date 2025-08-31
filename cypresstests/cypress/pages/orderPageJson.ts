@@ -11,7 +11,7 @@ class OrderPage {
 
     assertModalTotal(total: number) {
         orderForm.totalLabel().invoke('text').then(t => {
-            expect(t.replace(/\D+/g, '')).to.eq(String(total)); // tolerantně
+            expect(t.replace(/\D+/g, '')).to.eq(String(total)); //
         });
     }
 
@@ -25,7 +25,7 @@ class OrderPage {
     confirmText = () => this.confirmDialog().find('p');
     confirmOk = () => cy.contains('button', /^OK$/);
 
-   orderConfirmation(total: number) {
+    orderConfirmation(total: number) {
         this.confirmDialog().should('be.visible');
         this.confirmText().invoke('text').then(txt => {
             const m = txt.match(/Amount:\s*(\d+)/);
