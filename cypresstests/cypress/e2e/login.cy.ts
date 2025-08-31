@@ -57,12 +57,12 @@ describe("sign in log in", () => {
                 expect(msg).to.equal(`Welcome ${base.username}`);
 
             });
-        checkInCart.emptyCartViaApi(); ///////////// tak tohle me oblejvej
-
+        //  checkInCart.emptyCartViaApi(); ///////////// tak tohle me oblejvej
+        // checkInCart.emptyCart()
 
         ///// //  class INCART - mam funkce pro upravu    
-
-        checkInCart.openAndLoad();  //   checkInCart.emptyCart();
+        //   checkInCart.emptyCart();
+        checkInCart.openAndLoad();
         checkInCart.ensureOnCart();
 
         // Na menu a LAPTOPS
@@ -74,10 +74,7 @@ describe("sign in log in", () => {
         cy.intercept('POST', '**/addtocart').as('addToCart');
         cy.contains('a', 'Add to cart').click();
         cy.wait('@addToCart');
-        // Menu.click('cart');
 
-        // checkInCart.trimCartToOne();
-        // cy.contains('a', 'Add to cart').click();
 
 
         // ACT

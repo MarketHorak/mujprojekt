@@ -65,7 +65,7 @@ class CheckInCartinCart {
     emptyCart() {
         const loop = () => {
             this.cartItems().then($rows => {
-                if ($rows.length === 0) return;
+                if ($rows.length === 1) return;
                 this.deleteLink().first().click();
 
                 this.cartItems().should('have.length.lessThan', $rows.length);
@@ -73,7 +73,7 @@ class CheckInCartinCart {
             });
         };
         loop();
-        this.cartItems().should('have.length', 0);
+        this.cartItems().should('have.length', 1);
     }
 
     // pak se uz nasmeruju na order modal ... samostatna page udelam
