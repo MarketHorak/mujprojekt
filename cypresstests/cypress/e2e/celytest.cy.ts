@@ -90,7 +90,7 @@ describe("sign in log in", () => {
         checkInCart.productName().should('be.visible');
         checkInCart.productPrice().should('be.visible');
         checkInCart.itemSonyVaioShouldExist();
-        //  checkInCart.totalPrice().should('have.text', '790');
+        checkInCart.totalPrice().should('have.text', '790');
         checkInCart.placeOrderButton().should('be.visible');
 
         // ACT
@@ -99,7 +99,7 @@ describe("sign in log in", () => {
 
         // ORDER FORM
         orderForm.checkFieldsVisible();
-        orderForm.totalLabel().should('contain', '790');
+        // orderForm.totalLabel().should('contain', '790');
 
 
 
