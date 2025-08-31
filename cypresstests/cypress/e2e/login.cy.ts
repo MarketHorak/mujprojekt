@@ -14,6 +14,7 @@ import { cartApi } from '../pages/components/CartApiComponent';
 describe("sign in log in", () => {
     beforeEach(() => {
         cy.window().then(win => cy.stub(win, 'alert').as('alert'));
+        cy.viewport(1366, 900);
     });
     ///// //  SIGN IN
     it('Sign up s JSON DATA ', () => {
