@@ -126,8 +126,8 @@ describe("sign in log in", () => {
         });
 
         // potvrzení a OK
-        cy.wait(1000);
-        // orderPage.orderConfirmation(790);
+        cy.wait(1000); // prepsat should.exist nebo tak
+        orderPage.orderConfirmation();
         orderPage.confirmOk().click();
 
         Menu.click('logout');
