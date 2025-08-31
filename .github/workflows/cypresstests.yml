@@ -26,6 +26,7 @@ jobs:
       fail-fast: false
       matrix:
         browser: [chrome, firefox, edge]
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -55,9 +56,15 @@ jobs:
           group: "E2E on ${{ matrix.browser }}"
           tag: ${{ github.event_name }}
           parallel: false
+          # >>> DŮLEŽITÉ: nastavíme viewport a baseUrl přímo pro CI
+          config: viewportWidth=1366,viewportHeight=900,baseUrl=https://www.demoblaze.com
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # stejné nastavení i přes env proměnné (pro jistotu)
+          CYPRESS_baseUrl: https://www.demoblaze.com
+          CYPRESS_viewportWidth: 1366
+          CYPRESS_viewportHeight: 900
 
       - name: Upload screenshots on failure
         if: failure()
