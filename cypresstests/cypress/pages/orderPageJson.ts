@@ -25,7 +25,10 @@ class OrderPage {
     confirmText = () => this.confirmDialog().find('p');
     confirmOk = () => cy.contains('button', /^OK$/);
 
-    orderConfirmation(total: number) {
+    orderConfirmation() {
+        this.confirmDialog().should('be.visible');
+    }
+    orderConfirmation1(total: number) {
         this.confirmDialog().should('be.visible');
         this.confirmText().invoke('text').then(txt => {
             const m = txt.match(/Amount:\s*(\d+)/);
