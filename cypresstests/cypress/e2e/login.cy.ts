@@ -62,7 +62,7 @@ describe("sign in log in", () => {
         ///// //  class INCART - mam funkce pro upravu    
         // cy.visit('/index.html#');
         checkInCart.openAndLoad();
-        //     checkInCart.emptyCart();
+        //   checkInCart.emptyCart();
         checkInCart.ensureOnCart();
 
         // Na menu a LAPTOPS
