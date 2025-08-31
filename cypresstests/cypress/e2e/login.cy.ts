@@ -6,6 +6,7 @@ import smallNAV from '../pages/components/smallMenuComponent';
 import { checkInCart } from '../pages/components/checkincartComponent';
 import { orderForm } from '../pages/components/orderFormComponent';
 import { orderPage } from '../pages/orderPageJson';
+import * as dataorder from "../fixtures/orderData.json";
 
 // tak tohle fakt nevim
 import { cartApi } from '../pages/components/CartApiComponent';
@@ -111,19 +112,29 @@ describe("sign in log in", () => {
         orderPage.assertModalTotal(790);
 
         // vyplň a odešli
+        // orderPage.purchase({
+        //     name: 'Markéta',
+        //     country: 'CZ',
+        //     city: 'Praha',
+        //     card: '4111111111111111',
+        //     month: 12,
+        //     year: 2028,
+        // });
         orderPage.purchase({
-            name: 'Markéta',
-            country: 'CZ',
-            city: 'Praha',
-            card: '4111111111111111',
-            month: 12,
-            year: 2028,
+            name: dataorder.name,
+            country: dataorder.country,
+            city: dataorder.city,
+            card: dataorder.card,
+            month: dataorder.month,
+            year: dataorder.year,
         });
 
         // potvrzení a OK
-        cy.wait(1000); // počkej 
+        cy.wait(1000);
         orderPage.orderConfirmation(790);
         orderPage.confirmOk().click();
+
+        Menu.click('logout');
     });
     // });
 
