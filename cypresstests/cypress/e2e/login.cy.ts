@@ -59,7 +59,14 @@ describe("sign in log in", () => {
         cy.contains('a', 'Add to cart').click();
 
         Menu.click('cart');
-        checkInCart.emptyCart();  // emptyCart()
+        checkInCart.emptyCart();
+
+        // checkInCart.trimCartToOne();
+        checkInCart.productName().should('be.visible');
+        checkInCart.productPrice().should('be.visible');
+        checkInCart.itemSonyVaioShouldExist();
+        checkInCart.totalPrice().should('have.text', '790');
+        checkInCart.placeOrderButton().should('be.visible');
 
     });
 
