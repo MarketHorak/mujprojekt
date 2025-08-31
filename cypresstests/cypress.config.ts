@@ -11,7 +11,9 @@ export default defineConfig({
   projectId: "181dvh",
   e2e: {
 
-    baseUrl: "https://www.demoblaze.com",
+    baseUrl: 'https://www.demoblaze.com',
+    viewportWidth: 1366,
+    viewportHeight: 900,
 
     // baseUrl: "http://localhost:3000",
     supportFile: "cypress/support/e2e.ts",
