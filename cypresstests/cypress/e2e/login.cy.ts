@@ -5,6 +5,8 @@ import { logIn } from '../pages/loginPage';
 import smallNAV from '../pages/components/smallMenuComponent';
 import { checkInCart } from '../pages/components/checkincartComponent';
 import { orderForm } from '../pages/components/orderFormComponent';
+import { orderPage } from '../pages/orderPageJson';
+
 // tak tohle fakt nevim
 import { cartApi } from '../pages/components/CartApiComponent';
 
@@ -97,6 +99,32 @@ describe("sign in log in", () => {
         // ORDER FORM
         orderForm.checkFieldsVisible();
         orderForm.totalLabel().should('contain', '790');
+
+
+
+        // ORDER FORM
+        orderForm.checkFieldsVisible();
+        orderForm.totalLabel().should('contain', '790');
+
+
+        // otevři modal a zkontroluj
+        orderPage.openModal();
+        orderPage.assertModalTotal(790);
+
+        // vyplň a odešli
+        orderPage.purchase({
+            name: 'Markéta',
+            country: 'CZ',
+            city: 'Praha',
+            card: '4111111111111111',
+            month: 12,
+            year: 2028,
+        });
+
+        // potvrzení a OK
+        cy.wait(1000); // počkej 
+        orderPage.orderConfirmation(790);
+        orderPage.confirmOk().click();
     });
     // });
 
