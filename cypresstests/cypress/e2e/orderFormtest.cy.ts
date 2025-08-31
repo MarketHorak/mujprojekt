@@ -53,6 +53,8 @@ describe(' leva / small navigace funguje', () => {
         // potvrzení a OK
         cy.wait(1000); // počkej 
         orderPage.orderConfirmation();
+        // orderPage.orderConfirmation(790);
+
         orderPage.confirmOk().click();
     });
 });
